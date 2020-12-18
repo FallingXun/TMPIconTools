@@ -7,12 +7,15 @@ using UnityTexture2D = UnityEngine.Texture2D;
 using UnityEditor.Experimental.AssetImporters;
 using UnityEditorInternal;
 using System.IO;
+using TMPro;
 
 public class TMPIconTools : Editor
 {
     public const int ICON_SIZE = 32;
+    public const float DEFAULT_SCALE = 1.5f;
     private const string TMPICON_NAME = "TMPIcon";
     private static string m_SavePath = "Assets/TMPIcon/";
+    private static Dictionary<int, string> m_IconDic = new Dictionary<int, string>();
 
     [MenuItem("TMPIconTools/生成TMPIcon")]
     private static void GenerateTMPIcon()
@@ -66,6 +69,7 @@ public class TMPIconTools : Editor
         {
             return;
         }
+        m_IconDic.Clear();
         int sqrt = (int)(Mathf.Sqrt(texs.Length));
         if (texs.Length - sqrt * sqrt > 0)
         {
@@ -82,6 +86,7 @@ public class TMPIconTools : Editor
         int heightOffset = size - ICON_SIZE;    //左下角为0，0
         for (int i = 0; i < texs.Length; i++)
         {
+            m_IconDic[i] = texs[i].name;
             //var temp = CreateTemporaryDuplicate(texs[i], ICON_SIZE, ICON_SIZE, RenderTextureFormat.ARGB32);
             if (texs[i].isReadable == false)
             {
@@ -184,7 +189,16 @@ public class TMPIconTools : Editor
             spriteRect.alignment = (SpriteAlignment)alignment;
             spriteRect.pivot = pivot;
 
-            spriteRect.name = string.Format("{0}_{1}", TMPICON_NAME, index.ToString());
+            if (m_IconDic.ContainsKey(index))
+            {
+                spriteRect.name = m_IconDic[index];
+            }
+            else
+            {
+                spriteRect.name = "Error" + index.ToString();
+                Debug.LogError("找不到对应索引图片的名称:" + index.ToString());
+            }
+
             //spriteRect.originalName = spriteRect.name;
             spriteRect.border = Vector4.zero;
 
@@ -280,5 +294,49 @@ public class TMPIconTools : Editor
         }
     }
 
+    #endregion
+
+    #region 生成字体
+    [MenuItem("TMPIconTools/生成字体SpriteAsset")]
+    private static void CreateFont()
+    {
+        Object target = Selection.activeObject;
+
+        if (target == null || target.GetType() != typeof(UnityTexture2D))
+        {
+            return;
+        }
+
+        CreateSpriteAsset(target as UnityTexture2D);
+    }
+
+    private static void CreateSpriteAsset(UnityTexture2D sourceTex)
+    {
+        if(sourceTex == null)
+        {
+            return;
+        }
+        string filePathWithName = AssetDatabase.GetAssetPath(sourceTex);
+        string fileNameWithExtension = Path.GetFileName(filePathWithName);
+        string fileNameWithoutExtension = Path.GetFileNameWithoutExtension(filePathWithName);
+        string filePath = filePathWithName.Replace(fileNameWithExtension, "");
+        string assetPath = filePath + fileNameWithoutExtension + ".asset";
+        AssetDatabase.DeleteAsset(assetPath);
+
+        TMPro.EditorUtilities.TMP_SpriteAssetMenu.CreateSpriteAsset();
+
+        TMP_SpriteAsset spriteAsset = AssetDatabase.LoadAssetAtPath(assetPath, typeof(TMP_SpriteAsset)) as TMP_SpriteAsset;
+        if (spriteAsset != null)
+        {
+            var glyph = spriteAsset.spriteGlyphTable;
+            for (int i = 0; i < glyph.Count; i++)
+            {
+                glyph[i].scale = DEFAULT_SCALE;
+                var metrics = glyph[i].metrics;
+                metrics.horizontalBearingY = 1.0f * ICON_SIZE / 4 * 3;
+                glyph[i].metrics = metrics;
+            }
+        }
+    }
     #endregion
 }

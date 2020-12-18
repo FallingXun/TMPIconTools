@@ -7,6 +7,11 @@ TextureImporter:
     21300004: TMPIcon_2
     21300006: TMPIcon_3
     21300008: TMPIcon_4
+    21300010: EmojiOne2
+    21300012: EmojiOne4
+    21300014: EmojiOne5
+    21300016: EmojiOne3
+    21300018: EmojiOne1
   externalObjects: {}
   serializedVersion: 9
   mipmaps:
@@ -100,7 +105,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: TMPIcon_0
+      name: EmojiOne3
       rect:
         serializedVersion: 2
         x: 0
@@ -114,13 +119,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 548c773216e71554a9765e4bd0483360
+      spriteID: d1c09b5d3e04019408ddbddea8366072
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TMPIcon_1
+      name: EmojiOne1
       rect:
         serializedVersion: 2
         x: 32
@@ -134,13 +139,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9c9addeecd484f343b04104f4fd6383d
+      spriteID: 6f68b649f4d5bf244ac23b099fdb8006
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TMPIcon_2
+      name: EmojiOne5
       rect:
         serializedVersion: 2
         x: 64
@@ -154,13 +159,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d312cd389799d9c4e80a32a09268bac9
+      spriteID: 9b7ad3455842a134ebaf5f25e9c45d22
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TMPIcon_3
+      name: EmojiOne4
       rect:
         serializedVersion: 2
         x: 96
@@ -174,13 +179,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7eabf19d6397d684da5c0a1409ef696d
+      spriteID: 9f098ba7caad502458370f86ad0ec0ed
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: TMPIcon_4
+      name: EmojiOne2
       rect:
         serializedVersion: 2
         x: 0
@@ -194,7 +199,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 272b2ac9a2bd9c740b1c4cf31f64a484
+      spriteID: dba11283264d3684ab153858e7e67a99
       vertices: []
       indices: 
       edges: []
