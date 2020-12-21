@@ -614,7 +614,8 @@ MonoBehaviour:
     unicode: 9785
     pivot: {x: 0.5, y: 0.5}
     sprite: {fileID: 0}
-  fallbackSpriteAssets: []
+  fallbackSpriteAssets:
+  - {fileID: 11400000, guid: 4b609fb4513c1a34d9ee731d77592d27, type: 2}
 --- !u!21 &1369835458
 Material:
   serializedVersion: 6
