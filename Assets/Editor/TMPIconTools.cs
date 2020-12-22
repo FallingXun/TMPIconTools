@@ -432,6 +432,9 @@ public class TMPIconTools : Editor
             }
         }
 
+        // 重新导入资源
+        AssetDatabase.ImportAsset(assetPath);
+
         // 恢复选中对象
         Selection.activeObject = temp;
     }
