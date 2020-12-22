@@ -466,7 +466,10 @@ public class TMPIconTools : Editor
                 {
                     if (table[i] != null)
                     {
-                        spriteAssets.Add(table[i]);
+                        if (table[i].name.Contains(TMPICON_NAME) == false)
+                        {
+                            spriteAssets.Add(table[i]);
+                        }
                     }
                 }
                 spriteAssets.Add(tmpAsset);
